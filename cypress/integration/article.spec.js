@@ -112,10 +112,7 @@ describe('Article', () => {
         // so we save the first article slug to compare later
         cy.get(home.readMoreLink).should('have.attr', 'href').then((slug) => {
             cy.get(home.firstFavoriteButton).click()
-                .should('have.css', 'background-color', 'rgb(92, 184, 92)')
-            cy.wait('@addFavoriteReq')
-            cy.request('https://api.realworld.io/api/articles?limit=10&offset=0')
-            cy.pause()
+            cy.wait(1000)
 
             // verify article was actually favorited
             cy.request(`${apiUrl}/articles?limit=10&offset=0`).then((resp) => {
